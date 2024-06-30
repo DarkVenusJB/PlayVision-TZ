@@ -16,7 +16,7 @@ public class DiceRotator : MonoBehaviour
         
         Debug.Log("a");
         
-        transform.rotation = Quaternion.Euler(rotationData.FaceRotations[trueDiceIndex]);
+        diceMesh.rotation = Quaternion.Euler(rotationData.FaceRotations[trueDiceIndex]);
         
         Debug.Log(transform.rotation);
         

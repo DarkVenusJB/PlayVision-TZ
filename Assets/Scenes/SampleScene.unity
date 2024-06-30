@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15363be02e0d39a43a103b57e391c23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceCount: 4
+  diceCount: 5
   dices:
   - {fileID: 1677184569}
   - {fileID: 868425114}
