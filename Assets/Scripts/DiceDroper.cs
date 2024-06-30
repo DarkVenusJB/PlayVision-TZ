@@ -30,6 +30,8 @@ public class DiceDroper : MonoBehaviour
             dices[i].position = startingDicePositions[i];
             dices[i].rotation = InitializeRotation();
             
+            EnablePhysics(diceRigidbody[i]);
+            
             diceRigidbody[i].AddForce(InitializeForce());
             diceRigidbody[i].AddTorque(InitializeTorque());
         }
@@ -65,15 +67,15 @@ public class DiceDroper : MonoBehaviour
         return randomRotation;
     }
 
-    private void EnablePhysics(int diceIndex)
+    private void EnablePhysics(Rigidbody diceRb)
     {
-        diceRigidbody[diceIndex].useGravity = true;
-        diceRigidbody[diceIndex].isKinematic = false;
+        diceRb.useGravity = true;
+        diceRb.isKinematic = false;
     }
     
-    private void DisablePhysics(int diceIndex)
+    private void DisablePhysics(Rigidbody diceRb)
     {
-        diceRigidbody[diceIndex].useGravity = false;
-        diceRigidbody[diceIndex].isKinematic = true;
+        diceRb.useGravity = false;
+        diceRb.isKinematic = true;
     }
 }
