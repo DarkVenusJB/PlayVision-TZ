@@ -12,52 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25243cc40b249742aae4dffecbf3229, type: 3}
   m_Name: D6 Rotation Data
   m_EditorClassIdentifier: 
-  faceRelativeRotations:
-  - number: 1
-    rotation:
-    - {x: 0, y: 0, z: 0}
-    - {x: 270, y: 0, z: 0}
-    - {x: 90, y: 0, z: 270}
-    - {x: 90, y: 0, z: 90}
-    - {x: 270, y: 0, z: 0}
-    - {x: 180, y: 0, z: 0}
-  - number: 2
-    rotation:
-    - {x: 270, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 270}
-    - {x: 0, y: 0, z: 90}
-    - {x: 0, y: 0, z: 180}
-    - {x: 90, y: 0, z: 0}
-  - number: 3
-    rotation:
-    - {x: 270, y: 0, z: 0}
-    - {x: 0, y: 0, z: 90}
-    - {x: 0, y: 0, z: 0}
-    - {x: 180, y: 0, z: 0}
-    - {x: 180, y: 0, z: 90}
-    - {x: 90, y: 0, z: 0}
-  - number: 4
-    rotation:
-    - {x: 270, y: 0, z: 0}
-    - {x: 0, y: 0, z: 270}
-    - {x: 180, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 90}
-    - {x: 90, y: 0, z: 0}
-  - number: 5
-    rotation:
-    - {x: 270, y: 0, z: 0}
-    - {x: 0, y: 0, z: 180}
-    - {x: 0, y: 0, z: 90}
-    - {x: 0, y: 0, z: 270}
-    - {x: 0, y: 0, z: 0}
-    - {x: 90, y: 0, z: 0}
-  - number: 6
-    rotation:
-    - {x: 180, y: 0, z: 0}
-    - {x: 270, y: 0, z: 0}
-    - {x: 90, y: 0, z: 90}
-    - {x: 90, y: 0, z: 270}
-    - {x: 90, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
+  faceRotations:
+  - {x: 0, y: 0, z: 0}
+  - {x: 270, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 270}
+  - {x: 0, y: 0, z: 90}
+  - {x: 180, y: 0, z: 0}
+  - {x: 90, y: 0, z: 0}
