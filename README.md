@@ -8,7 +8,7 @@
 
 # Решение:
 
-![Unity_6tVXShLx0i](https://github.com/DarkVenusJB/PlayVision-TZ/assets/91538380/de4db530-e42b-417a-8922-cfd42d0dad76)
+![Unity_rDKE2aVMkV](https://github.com/DarkVenusJB/PlayVision-TZ/assets/91538380/d1140595-1dfb-4ddf-b01e-7ec1ea867b72)
 
 <div id="header" align="center">
   <h1>  Документация  </h1>
