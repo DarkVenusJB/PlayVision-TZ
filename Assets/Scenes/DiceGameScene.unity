@@ -2092,7 +2092,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 314180877}
         m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
-        m_MethodName: DropDices
+        m_MethodName: StartDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

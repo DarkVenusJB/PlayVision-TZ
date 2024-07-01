@@ -24,6 +24,6 @@ public class GameUI : MonoBehaviour
             secondDiceValue = 1;
     }
 
-    public void DropDices() => diceDroper.DropDice(firstDiceValue,secondDiceValue);
+    public void StartDrop() => diceDroper.DropDice(firstDiceValue,secondDiceValue);
     
 }
