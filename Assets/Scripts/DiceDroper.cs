@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
 
 public class DiceDroper : MonoBehaviour
 {
-    [SerializeField] private int diceCount = 4;
     [SerializeField] private Transform[] dices;
     [SerializeField] private int simulationTime;
     
@@ -21,23 +19,12 @@ public class DiceDroper : MonoBehaviour
     {
         for (int i = 0; i < dices.Length; i++)
         {
-            startingDicePositions.Add(dices[i].position);
             diceRigidbody.Add(dices[i].GetComponent<Rigidbody>());
-            
             DisablePhysics(diceRigidbody[i]);
-        }
-
-        for (int i = 0; i < dices.Length; i++)
-        {
+            
+            startingDicePositions.Add(dices[i].position);
+            
             animationFrames.Add(i,new List<AnimationRecordData>());
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            DropDice();
         }
     }
 
@@ -46,34 +33,34 @@ public class DiceDroper : MonoBehaviour
         for (int i = 0; i < dices.Length; i++)
         {
             dices[i].position = startingDicePositions[i];
-            dices[i].rotation = InitializeRotation();
             
             EnablePhysics(diceRigidbody[i]);
-
+            
+            dices[i].rotation = InitializeRotation();
             diceRigidbody[i].velocity = InitializeForce();
-            diceRigidbody[i].AddTorque(InitializeTorque(),ForceMode.VelocityChange);
+            diceRigidbody[i].AddTorque(InitializeTorque());
         }
     }
-
-    private void DropDice()
+    
+    public void DropDice(params int[] trueValues)
     {
         Physics.simulationMode = SimulationMode.Script;
         
         InitializeDicesState();
         ClearAnimationRecordData();
         RecordAnimation();
-        RotateDices();
-
+        
         Physics.simulationMode = SimulationMode.FixedUpdate;
-
+        
+        RotateDices(trueValues);
         StartCoroutine(PlayAnimation());
     }
     
     private Vector3 InitializeTorque()
     {
-        int randomX = Random.Range(0, 1);
-        int randomY = Random.Range(0, 1);
-        int randomZ = Random.Range(0, 1);
+        int randomX = Random.Range(0, 15);
+        int randomY = Random.Range(0, 15);
+        int randomZ = Random.Range(0, 15);
         
         randomTorque.Set(randomX,randomY,randomZ);
         return randomTorque;
@@ -81,9 +68,9 @@ public class DiceDroper : MonoBehaviour
 
     private Vector3 InitializeForce()
     {
-        int randomX = Random.Range(0, 2);
-        int randomY = Random.Range(0, 2);
-        int randomZ = Random.Range(3, 8);
+        int randomX = Random.Range(0, 3);
+        int randomY = Random.Range(0, 3);
+        int randomZ = Random.Range(5, 10);
         
         randomForce.Set(randomX,randomY,randomZ);
         return randomForce;
@@ -111,12 +98,10 @@ public class DiceDroper : MonoBehaviour
         diceRb.isKinematic = true;
     }
     
-    private void RotateDices()
+    private void RotateDices( params int[] trueValues)
     {
-        for (int i = 0; i < dices.Length; i++)
-        {
-            dices[i].GetComponent<DiceRotator>().RotateDiceMesh(diceCount);
-        }
+        for (int i = 0; i < trueValues.Length; i++)
+            dices[i].GetComponent<DiceRotator>().RotateDiceMesh(trueValues[i]);
     }
     
     private void RecordAnimation()
@@ -126,7 +111,6 @@ public class DiceDroper : MonoBehaviour
             for (int j = 0; j < dices.Length; j++)
             {
                 animationFrames[j].Add(new AnimationRecordData(dices[j].position,dices[j].rotation));
-                
             }
             
             Physics.Simulate(Time.fixedDeltaTime);
@@ -169,7 +153,7 @@ public class AnimationRecordData
 
     public AnimationRecordData(Vector3 position, Quaternion rotation)
     {
-        this.framePosition = position;
-        this.frameRotation = rotation;
+        framePosition = position;
+        frameRotation = rotation;
     }
 }
