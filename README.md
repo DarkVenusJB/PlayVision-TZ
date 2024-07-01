@@ -4,11 +4,4 @@
 </div>
 
 ##
-
-<p align="center">
- <img width="600" src ="ReadMeAssets/
-   Unity_6tVXShLx0i.gif" alt="Dice"/>
-</p>
-
-
-
+![Unity_6tVXShLx0i](https://github.com/DarkVenusJB/PlayVision-TZ/assets/91538380/de4db530-e42b-417a-8922-cfd42d0dad76)
