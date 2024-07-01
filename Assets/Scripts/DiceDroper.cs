@@ -27,20 +27,8 @@ public class DiceDroper : MonoBehaviour
             animationFrames.Add(i,new List<AnimationRecordData>());
         }
     }
-
-    private void InitializeDicesState()
-    {
-        for (int i = 0; i < dices.Length; i++)
-        {
-            dices[i].position = startingDicePositions[i];
-            
-            EnablePhysics(diceRigidbody[i]);
-            
-            dices[i].rotation = InitializeRotation();
-            diceRigidbody[i].velocity = InitializeForce();
-            diceRigidbody[i].AddTorque(InitializeTorque());
-        }
-    }
+     
+    // Симулируем бросок кубика, поворачиваем, меш и воспроизводим анимацию
     
     public void DropDice(params int[] trueValues)
     {
@@ -55,7 +43,25 @@ public class DiceDroper : MonoBehaviour
         RotateDices(trueValues);
         StartCoroutine(PlayAnimation());
     }
+
+    #region Initialize Dices
+
+    // Задаём кубикам позицую, поворот, физическое вращение и силу
     
+    private void InitializeDicesState()
+    {
+        for (int i = 0; i < dices.Length; i++)
+        {
+            dices[i].position = startingDicePositions[i];
+            
+            EnablePhysics(diceRigidbody[i]);
+            
+            dices[i].rotation = InitializeRotation();
+            diceRigidbody[i].velocity = InitializeForce();
+            diceRigidbody[i].AddTorque(InitializeTorque());
+        }
+    }
+
     private Vector3 InitializeTorque()
     {
         int randomX = Random.Range(0, 15);
@@ -86,6 +92,10 @@ public class DiceDroper : MonoBehaviour
         return randomRotation;
     }
 
+    #endregion
+
+    #region On/off Physics
+
     private void EnablePhysics(Rigidbody diceRb)
     {
         diceRb.useGravity = true;
@@ -97,12 +107,13 @@ public class DiceDroper : MonoBehaviour
         diceRb.useGravity = false;
         diceRb.isKinematic = true;
     }
+
+    #endregion
     
-    private void RotateDices( params int[] trueValues)
-    {
-        for (int i = 0; i < trueValues.Length; i++)
-            dices[i].GetComponent<DiceRotator>().RotateDiceMesh(trueValues[i]);
-    }
+    #region Animation
+
+    
+    // Во время симуляции записываем позицию и вращение кубиков в каждом кадре
     
     private void RecordAnimation()
     {
@@ -117,6 +128,8 @@ public class DiceDroper : MonoBehaviour
         }
     }
 
+    // Проигрываем анимацию, задавая  новую позицию и вращение кубикам
+    
     private IEnumerator PlayAnimation()
     {
         for (int i = 0; i <= simulationTime; i++)
@@ -131,6 +144,8 @@ public class DiceDroper : MonoBehaviour
         }
     }
 
+    // Очищаем контейнер с анимацией, перед записью новой анимации
+    
     private void ClearAnimationRecordData()
     {
         for (int i = 0; i < dices.Length; i++)
@@ -138,6 +153,16 @@ public class DiceDroper : MonoBehaviour
             if(animationFrames[i] != null)
                 animationFrames[i].Clear();
         }
+    }
+
+    #endregion
+    
+    // Поворачиваем меш кубиков под нужным углом, в зависимости от параметров trueValues
+    
+    private void RotateDices( params int[] trueValues)
+    {
+        for (int i = 0; i < trueValues.Length; i++)
+            dices[i].GetComponent<DiceRotator>().RotateDiceMesh(trueValues[i]);
     }
 }
 
